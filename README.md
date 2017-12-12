@@ -66,8 +66,8 @@ Les écoles participant au projet sont:
 	* Youssra Sbitri, étudiante
 	* Adrien Tétar, étudiant
 
-[français]: #atelier
-[English]: #workshop
+[français]: #atelier-pour-g-code-usinage-mat%C3%A9riaux-machines-et-simulation-english
+[English]: #workshop-for-g-code-machining-materials-machinery-and-simulation-french
 [c-s]: http://www.c-s.fr/ "C-S Systèmes d'information"
-[écoles]: #écoles
+[écoles]: #Écoles
 [esiee]: http://www.esiee.fr/ "ESIEE Paris"
