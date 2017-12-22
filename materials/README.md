@@ -48,3 +48,6 @@ Quelques références rapides :
    Des nombreuses sections sur les matériaux sont parsemées dans le
    livre, plus particulièrement parties "Mechanics and Strength of
    Materials" et "Properties, Treatment and Testing of Materials".
+
+[français]: #français
+[english]: #english

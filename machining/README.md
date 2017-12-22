@@ -31,3 +31,6 @@ Quelques références rapides :
    *La* bible de l'usinage. Malheureusement pour les francophones il
    n'existe pas d'ouvrage similaire; il va falloir apprendre à lire la
    langue du barde.
+
+[français]: #français
+[english]: #english
