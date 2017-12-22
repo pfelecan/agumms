@@ -1,4 +1,4 @@
-# English
+# English ([Français][français])
 ## Content
 
 Here we work on materials. Their properties, taxonomy, etc.
@@ -22,7 +22,7 @@ Quick useful references:
     especially the parts "Mechanics and Strength of Materials" and
     "Properties, Treatment and Testing of Materials".
 
-# Français
+# Français ([English][english])
 ## Contenu
 
 Ici nous travaillons sur les matériaux. Leur propriétés, leur
@@ -49,5 +49,5 @@ Quelques références rapides :
    livre, plus particulièrement parties "Mechanics and Strength of
    Materials" et "Properties, Treatment and Testing of Materials".
 
-[français]: #français
-[english]: #english
+[français]: #français-english
+[english]: #english-français

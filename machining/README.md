@@ -1,4 +1,4 @@
-# English ([French][français])
+# English ([Français][français])
 ## Content
 
 Here we work on machining.
