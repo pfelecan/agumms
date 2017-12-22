@@ -5,7 +5,7 @@ Here we work on machining.
 
 Quick useful references:
 
-1. [The Lazy Machinist](http://www.thatlazymachinist.com/free-training.html)
+1. [That Lazy Machinist](http://www.thatlazymachinist.com/free-training.html)
    
    A very useful site for the machinist beginner dispensed by the
    fabulous teacher Marc Lecuyer.
@@ -21,7 +21,7 @@ Ici nous travaillons sur l'usinage.
 
 Quelques références rapides :
 
-1. [The Lazy Machinist](http://www.thatlazymachinist.com/formation-gratuite.html)
+1. [That Lazy Machinist](http://www.thatlazymachinist.com/formation-gratuite.html)
 
    Un site très utile au débutant dans l'usinage avec un apprentissage
    dispensé par le fabuleux professeur Marc Lecuyer.
@@ -32,5 +32,5 @@ Quelques références rapides :
    n'existe pas d'ouvrage similaire; il va falloir apprendre à lire la
    langue du barde.
 
-[français]: #français
-[english]: #english
+[français]: #français-english
+[english]: #english-français

@@ -5,7 +5,7 @@ Here we work on materials. Their properties, taxonomy, etc.
 
 Quick useful references:
 
-1. [The Lazy Machinist](http://www.thatlazymachinist.com/free-training.html)
+1. [That Lazy Machinist](http://www.thatlazymachinist.com/free-training.html)
    
    A very useful site for the machinist beginner dispensed by the
    fabulous teacher Marc Lecuyer.
@@ -30,7 +30,7 @@ taxonomie, etc.
 
 Quelques références rapides :
 
-1. [The Lazy Machinist](http://www.thatlazymachinist.com/formation-gratuite.html)
+1. [That Lazy Machinist](http://www.thatlazymachinist.com/formation-gratuite.html)
 
    Un site très utile au débutant dans l'usinage avec un apprentissage
    dispensé par le fabuleux professeur Marc Lecuyer.
