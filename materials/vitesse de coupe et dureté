@@ -1,0 +1,73 @@
+1. Premières inférences à partir des matériaux
+
+En usinage, les paramètres de la coupe sont déterminés principalement par le matériau utilisé. Ces derniers sont assez diverses, généralement des métaux, et ont une résistance et une difficulté de coupe variables.
+
+Les métaux plus durs sont plus difficiles à pénétrer, et demandent donc plus d’énergie, ce qui a pour effet d’augmenter la température de coupe à vitesse constante. On cherche à réduire la vitesse de coupe pour rester dans la plage de température supportée par l’outil de coupe. À l’inverse, une vitesse de coupe trop faible fait que l’outil va “effleurer” la pièce et la friction résultante va dégrader la pointe.
+
+La dureté (qu’on mesure expérimentalement selon un protocole donné; la dureté Brinell par exemple) est donc une propriété importante eu égard aux paramètres de coupe, mais elle suffit pas à exprimer précisément la vitesse de coupe puisque la microstructure du matériau a aussi son importance (les alliages en particulier peuvent changer significativement les propriétés de l’élément de base). La microstructure est en fait le paramètre le plus important influençant la difficulté de coupe, c’est donc en fonction de cela qu’on va grouper les matériaux dans les tableaux de vitesses (de matériaux de dureté un peu différentes peuvent avoir la même vitesse de coupe).
+
+On a donc en données des vitesses de coupe de référence, en fonction du matériau utilisé et du matériau qui compose l’outil de coupe. À titre d’exemple, pour un outil en acier “rapide” (HSS, alliage d’acier renforcé pour supporter de plus hautes températures) typique en usinage, on peut noter les données suivantes :
+
+
+
+
+Vitesse de coupe (m/min)
+Acier (dur)
+15–18
+Acier moyen
+30–38
+Acier alliage carbone (C1008–1095)
+21–40
+Aluminium
+75–105
+
+Il s’agit donc de la vitesse qu’on veut avoir à la surface de la pièce qu’on découpe, on cherche donc à adapter les paramètres de l’outil pour atteindre cette vitesse.
+
+
+2. Vers les paramètres de la machine-outil
+
+L’usinage se fait généralement sur des machines qui font tourner l’outil (fraiseuse) ou la pièce (tourneuse), ce qui permet d’éliminer efficacement les copeaux et d’avoir une coupe uniforme. Il nous faut convertir la vitesse de coupe (m/min) en vitesse de rotation (révolutions/min) de l’outil :
+
+N=1000  Vc  d
+
+avec N la vitesse de rotation en rpm, Vc la vitesse de coupe et d le diamètre en mm. C’est le diamètre de l’outil pour le fraisage et le diamètre de la pièce de révolution pour le tournage.
+
+Il nous faut aussi obtenir la vitesse d’avance (i.e., vitesse à laquelle l’outil avance en direction de la pièce), qu’on peut calculer pour la fraiseuse en fonction de la vitesse de rotation :
+
+Vf=fzZN
+
+avec Vf la vitesse d’avance en mm/min, fz l’avance par tour en mm/dent et Z le nombre de dents de la fraise.
+L’avance par dent fz représente le travail qu’on veut soumettre à chaque dent. Pour dégrossir la forme on va prendre .006–.008 pouces par dent et pour les finitions (obtenir une surface lisse) on va prendre plutôt .002–.005 ppd. [CONVERTIR EN MM]
+
+Pour la tourneuse, l’absence de dents permet de simplifier la formule :
+
+Vf=fN
+
+avec f l’avance par tour en mm.
+
+On peut à présent synthétiser le processus de détermination des vitesses en un algorithme.
+
+3. Structure de programme
+
+
+
+Il est à noter que certains des paramètres peuvent être prédéterminés ou prendre une valeur par défaut alors que d’autres, comme le diamètre de la pièce par exemple nécessitent une entrée utilisateur.
+L’avance par dent/avance par tour qui représentent le “travail” qu’on fait porter sur l’outil peuvent prendre des plages de valeurs standard, il y a dans ce cas plusieurs plages possibles (par exemple pour le dégrossissage ou les finitions comme on l’a vu) et par conséquent il y a aussi un “contexte” aux diverses constantes qu’on utilise et qu’on va retrouver dans le programme G-code.
+
+4. Sources
+
+Machinery’s Handbook, p. 1008 “Cutting Speeds and Feeds”
+
+https://en.wikipedia.org/wiki/Speeds_and_feeds#Cutting_speed
+https://fr.wikipedia.org/wiki/Vitesse_de_coupe
+
+CHIPS, SPEEDS AND FEEDS 2018, MARC LECUYER ← pas hyper important
+https://www.youtube.com/watch?v=szoSKHi5erQ
+009 CHIPS, SPEEDS AND FEEDS PART 2, MARC LECUYER
+https://www.youtube.com/watch?v=yN2bUUGYV6A
+
+https://openoregon.pressbooks.pub/manufacturingprocesses45/chapter/unit-two-cutting-speed/
+
+vitesses de rotation et dureté
+http://www.millstar.com/pdf/Millstar_catalog/profile-carbide-modular-shrink-system_inserts_parameters.pdf
+
