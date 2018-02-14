@@ -114,7 +114,7 @@ Au sein de la méthode des éléments finis, les principales méthodes de résol
 
 Ces méthodes peuvent s'avérer très chronophages voire rédhibitoires en terme de mémoire et de temps de calcul (plusieurs dizaines d'heures pour la formation d'un copeau de 1 mm de long).
 
-#### II.3 Résultats atteignables
+### II.3 Résultats atteignables
 
 La simulation par éléments finis permet d'accèder aux distributions de déplacement, d'effort de réaction, de vitesses de déformation, de contraintes (cf. figure 3), de températures. Elle donne aussi accès à des paramètres directement utilisables par l'usineur :  
 - la géométrie du copeau qui permet d'estimer le débit de matière usinée ;
