@@ -1,182 +1,170 @@
-# Simulation numérique de l'usinage : un état de l'art en vue de la constitution d'une base de données matérielles
+# Simulation numÃ©rique de l'usinage : un Ã©tat de l'art en vue de la constitution d'une base de donnÃ©es matÃ©rielles
 
 ## I Contexte
-Une opération d'usinage par machine-outil à commande numérique sollicite des moyens mécaniques souvent complexes, onéreux et nécessite une vigilance accrue pour minimiser les coûts de fabrication. Il est alors primordial de pouvoir simuler les différentes opérations d'usinage avant de lancer la fabrication pour  
-- vérifier le mouvement des pièces usinées et des outils afin de détecter d'éventuelles collisions pendant le processus ;
-- estimer le volume de matière enlevée ;
-- certifier la trajectoire d'outil générée par un logiciel de FAO, en conformité avec la machine.
+Une opÃ©ration d'usinage par machine-outil Ã  commande numÃ©rique sollicite des moyens mÃ©caniques souvent complexes, onÃ©reux et nÃ©cessite une vigilance accrue pour minimiser les coÃ»ts de fabrication. Il est alors primordial de pouvoir simuler les diffÃ©rentes opÃ©rations d'usinage avant de lancer la fabrication pour  
+- vÃ©rifier le mouvement des piÃ¨ces usinÃ©es et des outils afin de dÃ©tecter d'Ã©ventuelles collisions pendant le processus ;
+- estimer le volume de matiÃ¨re enlevÃ©e ;
+- certifier la trajectoire d'outil gÃ©nÃ©rÃ©e par un logiciel de FAO, en conformitÃ© avec la machine.
 
-Ces simulations sont généralement effectuées par un logiciel de FAO à partir de modèles géométriques [1]. Cependant, elles souffrent d'un manque de précision concernant la géométrie obtenue et ne permettent pas d'anticiper certains problèmes (aptitude à l'usinage, modes d'usure et d'endommagement des outils, qualité de surface de la pièce usinée).
+Ces simulations sont gÃ©nÃ©ralement effectuÃ©es par un logiciel de FAO Ã  partir de modÃ¨les gÃ©omÃ©triques [1]. Cependant, elles souffrent d'un manque de prÃ©cision concernant la gÃ©omÃ©trie obtenue et ne permettent pas d'anticiper certains problÃ¨mes (aptitude Ã  l'usinage, modes d'usure et d'endommagement des outils, qualitÃ© de surface de la piÃ¨ce usinÃ©e).
 
-Afin d'optimiser les conditions d'usinage, différentes méthodes peuvent être mises en oeuvre :  
-- les méthodes expérimentales, longues et coûteuses, où la zone de fonctionnement idéale est recherchée au travers d'un plan d'expérience ;
-- les méthodes numériques, utilisant un modèle de coupe à une échelle d'observation particulière (cf. figure 1).
+Afin d'optimiser les conditions d'usinage, diffÃ©rentes mÃ©thodes peuvent Ãªtre mises en oeuvre :  
+- les mÃ©thodes expÃ©rimentales, longues et coÃ»teuses, oÃ¹ la zone de fonctionnement idÃ©ale est recherchÃ©e au travers d'un plan d'expÃ©rience ;
+- les mÃ©thodes numÃ©riques, utilisant un modÃ¨le de coupe Ã  une Ã©chelle d'observation particuliÃ¨re (cf. figure 1).
 
-![echelles](https://github.com/pfelecan/agumms/blob/master/materials/echelles.png)
+![Echelles de modÃ©lisation](https://github.com/pfelecan/agumms/blob/master/materials/echelles.png)
 
-||
-|:-:|
-|Figure 1 : Les différentes échelles de modélisation de la coupe des métaux [4]. A l'échelle microscopique, la cartographie EBSD dévoile la microstructure du copeau dans la zone de contact avec l'outil. |
-|| 
+**Figure 1 : Les diffÃ©rentes Ã©chelles de modÃ©lisation de la coupe des mÃ©taux [4]. A l'Ã©chelle microscopique, la cartographie EBSD dÃ©voile la microstructure du copeau dans la zone de contact avec l'outil.**
 
-Ces modèles sont basés sur différentes approches :  
-- les approches empiriques, basées sur un grand nombre de données expérimentales, comme le couple outil-matière (échelle macroscopique) ;
-- les approches phénoménologiques ou mécanistes, basées sur des modélisations simples retranscrivant le comportement mécanique (échelle mésoscopique) ;
-- les approches physiques (échelle microscopique) ou thermomécaniques (échelle mésoscopique), fondées sur des lois de comportement plus ou moins évoluées.
+Ces modÃ¨les sont basÃ©s sur diffÃ©rentes approches :  
+- les approches empiriques, basÃ©es sur un grand nombre de donnÃ©es expÃ©rimentales, comme le couple outil-matiÃ¨re (Ã©chelle macroscopique) ;
+- les approches phÃ©nomÃ©nologiques ou mÃ©canistes, basÃ©es sur des modÃ©lisations simples retranscrivant le comportement mÃ©canique (Ã©chelle mÃ©soscopique) ;
+- les approches physiques (Ã©chelle microscopique) ou thermomÃ©caniques (Ã©chelle mÃ©soscopique), fondÃ©es sur des lois de comportement plus ou moins Ã©voluÃ©es.
 
-Ces modèles permettent de prédire la géométrie des copeaux, les forces de coupe et les échauffements à partir des conditions de coupe et des matériaux usinés et d'outil. En particulier, l'énergie spécifique de coupe (aussi appelée pression spécifique de coupe) $K_c$ est un paramètre important car il permet d'avoir accès à l'effort de coupe $F_c$, à la puissance de coupe $P_c$ et au couple à la broche.
+Ces modÃ¨les permettent de prÃ©dire la gÃ©omÃ©trie des copeaux, les forces de coupe et les Ã©chauffements Ã  partir des conditions de coupe et des matÃ©riaux usinÃ©s et d'outil. En particulier, l'Ã©nergie spÃ©cifique de coupe (aussi appelÃ©e pression spÃ©cifique de coupe) $K_c$ est un paramÃ¨tre important car il permet d'avoir accÃ¨s Ã  l'effort de coupe $F_c$, Ã  la puissance de coupe $P_c$ et au couple Ã  la broche.
 
-Les approches empiriques relient $K_c$ (W.s.m<sup>-3</sup>) à l'épaisseur du copeau $\ell$ (mm) par une fonction analytique :
+Les approches empiriques relient $K_c$ (W.s.m<sup>-3</sup>) Ã  l'Ã©paisseur du copeau $\ell$ (mm) par une fonction analytique :
 
 $$ 
 K_c = K_{c1}\times \ell^{-m_c} 
 $$
 
-Les paramètres $K_{c1}$ et $m_c$ sont déterminés expérimentalement et tabulés.
+Les paramÃ¨tres $K_{c1}$ et $m_c$ sont dÃ©terminÃ©s expÃ©rimentalement et tabulÃ©s.
 
-Les approches mécanistes permettent d'avoir accès aux efforts locaux à partir des conditions de coupe locales. Dans le cas de la coupe orthogonale (cf. figure 2), le modèle de Merchant considère que la formation du copeau s'effectue par cisaillement. Il permet de calculer l'effort de coupe $F_c$ à partir des paramètres géométriques de la coupe (avance $s$, profondeur de passe $w$, angle de coupe $\gamma$), et de paramètres matériels (l'angle d'adhérence $\Phi$ dans le cas d'un frottement de Coulomb et la contrainte maximale de cisaillement admissible $k$ pour un matériau rigide parfaitement plastique) :
+Les approches mÃ©canistes permettent d'avoir accÃ¨s aux efforts locaux Ã  partir des conditions de coupe locales. Dans le cas de la coupe orthogonale (cf. figure 2), le modÃ¨le de Merchant considÃ¨re que la formation du copeau s'effectue par cisaillement. Il permet de calculer l'effort de coupe $F_c$ Ã  partir des paramÃ¨tres gÃ©omÃ©triques de la coupe (avance $s$, profondeur de passe $w$, angle de coupe $\gamma$), et de paramÃ¨tres matÃ©riels (l'angle d'adhÃ©rence $\Phi$ dans le cas d'un frottement de Coulomb et la contrainte maximale de cisaillement admissible $k$ pour un matÃ©riau rigide parfaitement plastique) :
 
 $$
 F_c = 2ksw\tan\left( \frac{\pi}{4}+\frac{\Phi - \gamma}{2}\right)
 $$
 
-Le paramètre $k$ est proportionnel à la limite élastique et à la dureté. Le modèle donne aussi une estimation de l'épaisseur du copeau et de la longueur de contact entre le copeau et l'outil (toutes deux proportionnelles à l'avance $s$). A partir de l'effort de coupe, on peut alors calculer l'énergie spécifique de coupe $K_c = \frac{F_c}{sw}$ (W.s.m<sup>-3</sup>), la puissance de coupe $P_c = K_cQ$ (W) avec $Q=swV_c$ (m<sup>3</sup>.s<sup>-1</sup>) le débit de matière et $V_c$ la vitesse de coupe et enfin le couple à la broche $C=\frac{P_c}{\omega}$ (N.m) pour une vitesse angulaire $\omega$ (cas du tournage).
+Le paramÃ¨tre $k$ est proportionnel Ã  la limite Ã©lastique et Ã  la duretÃ©. Le modÃ¨le donne aussi une estimation de l'Ã©paisseur du copeau et de la longueur de contact entre le copeau et l'outil (toutes deux proportionnelles Ã  l'avance $s$). A partir de l'effort de coupe, on peut alors calculer l'Ã©nergie spÃ©cifique de coupe $K_c = \frac{F_c}{sw}$ (W.s.m<sup>-3</sup>), la puissance de coupe $P_c = K_cQ$ (W) avec $Q=swV_c$ (m<sup>3</sup>.s<sup>-1</sup>) le dÃ©bit de matiÃ¨re et $V_c$ la vitesse de coupe et enfin le couple Ã  la broche $C=\frac{P_c}{\omega}$ (N.m) pour une vitesse angulaire $\omega$ (cas du tournage).
 
-Ce modèle a tendance à sous-estimer les efforts de coupe, l'épaisseur du copeau et la longueur de contact. De plus, les modèles purement mécaniques ne prédisent pas la décroissance de $K_c$ avec l'avance $s$.
+Ce modÃ¨le a tendance Ã  sous-estimer les efforts de coupe, l'Ã©paisseur du copeau et la longueur de contact. De plus, les modÃ¨les purement mÃ©caniques ne prÃ©disent pas la dÃ©croissance de $K_c$ avec l'avance $s$.
 
-![geometrie](https://github.com/pfelecan/agumms/blob/master/materials/geometrie.png)
+![gÃ©omÃ©trie de la coupe orthogonale](https://github.com/pfelecan/agumms/blob/master/materials/geometrie.png)
 
-||
-|:-:|
-|Figure 2 : Géométrie de la coupe orthogonale [2].|
-|| 
+**Figure 2 : GÃ©omÃ©trie de la coupe orthogonale [2]. **
 
-Les approches thermomécaniques permettent d'avoir accès aux déformations locales et aux contraintes résiduelles de la pièce et de l'outil. Elles permettent de prédire précisément la géométrie finale de la pièce et d'avoir accès à certaines grandeurs qualifiant l'état mécanique des composants (dureté, usure...). Elles sont généralement mises en oeuvre par simulation numérique à l'aide de la méthode des éléments finis. 
+Les approches thermomÃ©caniques permettent d'avoir accÃ¨s aux dÃ©formations locales et aux contraintes rÃ©siduelles de la piÃ¨ce et de l'outil. Elles permettent de prÃ©dire prÃ©cisÃ©ment la gÃ©omÃ©trie finale de la piÃ¨ce et d'avoir accÃ¨s Ã  certaines grandeurs qualifiant l'Ã©tat mÃ©canique des composants (duretÃ©, usure...). Elles sont gÃ©nÃ©ralement mises en oeuvre par simulation numÃ©rique Ã  l'aide de la mÃ©thode des Ã©lÃ©ments finis. 
 
-## II Simulation numérique de l'usinage
-### II.1 Objectif et difficultés
-L'objectif de la simulation numérique de l'usinage est d'apporter une contribution à la compréhension des phénomènes liés à la coupe des métaux, en particulier dans la zone de contact entre l'outil et le matériau à usiner. Elle permet de fournir la géométrie du copeau et une estimation de la distribution des grandeurs physiques dans le matériau usiné : vitesse de déplacement, tenseur des vitesses de déformation et des contraintes, déformation plastique, température, voire d'autres grandeurs caractérisant l'évolution métallurgique du matériau usiné (nature des phases, taille des grains, dureté, contraintes résiduelles...) ou son endommagement dans le copeau et en dessous de la surface créée par usinage. On peut aussi se proposer d'étendre l'approche à l'outil (en le supposant en première approximation thermoélastique) pour y estimer le champ de contrainte et de température et ainsi aborder directement le problème de sa dégradation et de son usure. Elles sont donc potentiellement très riches et puissantes.
+## II Simulation numÃ©rique de l'usinage
+### II.1 Objectif et difficultÃ©s
+L'objectif de la simulation numÃ©rique de l'usinage est d'apporter une contribution Ã  la comprÃ©hension des phÃ©nomÃ¨nes liÃ©s Ã  la coupe des mÃ©taux, en particulier dans la zone de contact entre l'outil et le matÃ©riau Ã  usiner. Elle permet de fournir la gÃ©omÃ©trie du copeau et une estimation de la distribution des grandeurs physiques dans le matÃ©riau usinÃ© : vitesse de dÃ©placement, tenseur des vitesses de dÃ©formation et des contraintes, dÃ©formation plastique, tempÃ©rature, voire d'autres grandeurs caractÃ©risant l'Ã©volution mÃ©tallurgique du matÃ©riau usinÃ© (nature des phases, taille des grains, duretÃ©, contraintes rÃ©siduelles...) ou son endommagement dans le copeau et en dessous de la surface crÃ©Ã©e par usinage. On peut aussi se proposer d'Ã©tendre l'approche Ã  l'outil (en le supposant en premiÃ¨re approximation thermoÃ©lastique) pour y estimer le champ de contrainte et de tempÃ©rature et ainsi aborder directement le problÃ¨me de sa dÃ©gradation et de son usure. Elles sont donc potentiellement trÃ¨s riches et puissantes.
 
-Plus précisément, cela revient à estimer la valeur numérique de ces grandeurs en des points particuliers associés à un maillage en construisant une solution approchée du système d'équations décrivant l’écoulement de matière et de chaleur. Ce système étant non linéaire, ces approches ne sont développées que très lentement et progressivement. L'usinage est l'une des configurations qui combinent en effet un grand nombre de difficultés proprement numériques :  
-- géométrie du copeau indéterminée ;
-- gestion du contact (les efforts de contacts et les surfaces en contact sont des inconnues du problème) ;
-- gradients de déformations, vitesses de déformations et températures
-très élevés dans une zone confinée ;
-- couplage thermomécanique fort.
+Plus prÃ©cisÃ©ment, cela revient Ã  estimer la valeur numÃ©rique de ces grandeurs en des points particuliers associÃ©s Ã  un maillage en construisant une solution approchÃ©e du systÃ¨me d'Ã©quations dÃ©crivant lâ€™Ã©coulement de matiÃ¨re et de chaleur. Ce systÃ¨me Ã©tant non linÃ©aire, ces approches ne sont dÃ©veloppÃ©es que trÃ¨s lentement et progressivement. L'usinage est l'une des configurations qui combinent en effet un grand nombre de difficultÃ©s proprement numÃ©riques :  
+- gÃ©omÃ©trie du copeau indÃ©terminÃ©e ;
+- gestion du contact (les efforts de contacts et les surfaces en contact sont des inconnues du problÃ¨me) ;
+- gradients de dÃ©formations, vitesses de dÃ©formations et tempÃ©ratures
+trÃ¨s Ã©levÃ©s dans une zone confinÃ©e ;
+- couplage thermomÃ©canique fort.
 
-Sur le plan physique s'ajoutent, pour la confrontation des résultats à l'expérience, les incertitudes sur la rhéologie du matériau usiné et la loi de frottement du copeau sur l’outil. Depuis les années 1990, le développement des algorithmes de calcul par éléments finis et l'augmentation de la puissance de calcul des ordinateurs a permis de simuler directement le processus de formation du copeau en déformation plane. De ce fait, la modélisation de l'usinage reste pour l'instant un domaine de recherche pointue et demande d'acquérir une expertise poussée dans différents domaines tels que la coupe des métaux, la mécanique des milieux continus, notamment en grandes transformations, la tribologie, la résistance des matériaux, la thermique, la métallurgie ainsi que la méthode des éléments finis.
+Sur le plan physique s'ajoutent, pour la confrontation des rÃ©sultats Ã  l'expÃ©rience, les incertitudes sur la rhÃ©ologie du matÃ©riau usinÃ© et la loi de frottement du copeau sur lâ€™outil. Depuis les annÃ©es 1990, le dÃ©veloppement des algorithmes de calcul par Ã©lÃ©ments finis et l'augmentation de la puissance de calcul des ordinateurs a permis de simuler directement le processus de formation du copeau en dÃ©formation plane. De ce fait, la modÃ©lisation de l'usinage reste pour l'instant un domaine de recherche pointue et demande d'acquÃ©rir une expertise poussÃ©e dans diffÃ©rents domaines tels que la coupe des mÃ©taux, la mÃ©canique des milieux continus, notamment en grandes transformations, la tribologie, la rÃ©sistance des matÃ©riaux, la thermique, la mÃ©tallurgie ainsi que la mÃ©thode des Ã©lÃ©ments finis.
 
-### II.2 Modélisation de la coupe orthogonale
-La simulation de la coupe orthogonale reste à ce jour le seul cas d'usinage traité numériquement car les hypothèses de modélisation (équilibre mécanique quasi-statique et régime thermique permanent de la phase stabilisée d'usinage, déformations planes en 2D) permettent de trouver un compromis acceptable entre le temps de calcul et la qualité des résultats.
+### II.2 ModÃ©lisation de la coupe orthogonale
+La simulation de la coupe orthogonale reste Ã  ce jour le seul cas d'usinage traitÃ© numÃ©riquement car les hypothÃ¨ses de modÃ©lisation (Ã©quilibre mÃ©canique quasi-statique et rÃ©gime thermique permanent de la phase stabilisÃ©e d'usinage, dÃ©formations planes en 2D) permettent de trouver un compromis acceptable entre le temps de calcul et la qualitÃ© des rÃ©sultats.
 
-Le principe de la simulation d’une coupe orthogonale pure est donné sur la figure 2 : la pièce est un bloc rectangulaire qui est bloqué par une butée ; l’outil est initialement à l’extérieur de la pièce et son arête est située à une certaine distance de la surface supérieure de la pièce (avance $s$) . Animé d’une vitesse horizontale (vitesse de coupe), l’outil rentre progressivement dans la pièce et le code de calcul fournit directement le processus de formation du copeau en début d’usinage en résolvant simultanément les équations mécaniques et l’équation de la chaleur.
+Le principe de la simulation dâ€™une coupe orthogonale pure est donnÃ© sur la figure 2 : la piÃ¨ce est un bloc rectangulaire qui est bloquÃ© par une butÃ©e ; lâ€™outil est initialement Ã  lâ€™extÃ©rieur de la piÃ¨ce et son arÃªte est situÃ©e Ã  une certaine distance de la surface supÃ©rieure de la piÃ¨ce (avance $s$) . AnimÃ© dâ€™une vitesse horizontale (vitesse de coupe), lâ€™outil rentre progressivement dans la piÃ¨ce et le code de calcul fournit directement le processus de formation du copeau en dÃ©but dâ€™usinage en rÃ©solvant simultanÃ©ment les Ã©quations mÃ©caniques et lâ€™Ã©quation de la chaleur.
 
 
-Les principaux modèles physiques utilisés sont :  
-- un modèle de transfert de chaleur couplé à la mécanique ;
-- un modèle rhéologique thermo-élasto-visco-plastique pour le matériau usiné et généralement thermo-élastique pour l'outil ;
-- un modèle de frottement entre le matériau et l'outil (type Coulomb ou Tresca).
+Les principaux modÃ¨les physiques utilisÃ©s sont :  
+- un modÃ¨le de transfert de chaleur couplÃ© Ã  la mÃ©canique ;
+- un modÃ¨le rhÃ©ologique thermo-Ã©lasto-visco-plastique pour le matÃ©riau usinÃ© et gÃ©nÃ©ralement thermo-Ã©lastique pour l'outil ;
+- un modÃ¨le de frottement entre le matÃ©riau et l'outil (type Coulomb ou Tresca).
 
-Le tableau 1 indique les principales propriétés indispensables pour une formulation thermo-élasto-plastique (sans écrouissage).
+Le tableau 1 indique les principales propriÃ©tÃ©s indispensables pour une formulation thermo-Ã©lasto-plastique (sans Ã©crouissage).
 
- Propriété           | Symbole | Unité  
+ PropriÃ©tÃ©           | Symbole | UnitÃ©  
 :-------------------:|:-------:|:------:
  Masse volumique     | $\rho$  | kg.m<sup>-3</sup> 
  Module de Young     |   $E$    |   Pa  
  Coefficient de Poisson |$\nu$ |   -    
- Limite élastique    | $R_e$ | Pa
+ Limite Ã©lastique    | $R_e$ | Pa
  Coefficient de frottement|$\mu$| -
  Dilatation thermique|$\alpha$ | K<sup>-1</sup> 
- Chaleur spécifique  | $C_p$   | J.kg<sup>-1</sup>.K<sup>-1</sup>
- Conductivité thermique|$\lambda$| W.K<sup>-1</sup>.m<sup>-1</sup>
+ Chaleur spÃ©cifique  | $C_p$   | J.kg<sup>-1</sup>.K<sup>-1</sup>
+ ConductivitÃ© thermique|$\lambda$| W.K<sup>-1</sup>.m<sup>-1</sup>
  
-||
-|:-:|
-|Tableau 1 : Propriétés thermiques et mécaniques.|
-|| 
+**Tableau 1 : PropriÃ©tÃ©s thermiques et mÃ©caniques.**
 
-Etant donné les forts gradients thermiques dans la zone de coupe (températures pouvant atteindre plusieurs centaines de degrès Celsius), il est indispensable d'avoir accès aux variations des coefficients de ces modèles avec la température. 
+Etant donnÃ© les forts gradients thermiques dans la zone de coupe (tempÃ©ratures pouvant atteindre plusieurs centaines de degrÃ¨s Celsius), il est indispensable d'avoir accÃ¨s aux variations des coefficients de ces modÃ¨les avec la tempÃ©rature. 
 
-Il existe quantités de lois de comportement (visco-)plastiques. La loi de Johnson-Cook est souvent utilisée pour modéliser la visco-plasticité de certains métaux soumis à de grandes vitesses de déformation (aciers bas et moyen carbone, aluminium, titane, laiton, cuivre, tungstène). Il relie la déformation plastique $\varepsilon_p$ à la contrainte d'écoulement $\sigma_y$ ($T$ désigne la température) :
+Il existe quantitÃ©s de lois de comportement (visco-)plastiques. La loi de Johnson-Cook est souvent utilisÃ©e pour modÃ©liser la visco-plasticitÃ© de certains mÃ©taux soumis Ã  de grandes vitesses de dÃ©formation (aciers bas et moyen carbone, aluminium, titane, laiton, cuivre, tungstÃ¨ne). Il relie la dÃ©formation plastique $\varepsilon_p$ Ã  la contrainte d'Ã©coulement $\sigma_y$ ($T$ dÃ©signe la tempÃ©rature) :
 
 $$
 \sigma_y = \left[A+B\left(\varepsilon_p\right)^n\right]\left[1+C  \ln\left(\frac {\dot{\varepsilon}_p}{\dot{\varepsilon}_0}\right)\right]\left[1-\left(\frac{T-T_0}{T_f - T_0} \right)^m \right]
 $$
 
-Cette loi phénoménologique compte 8 paramètres empiriques à identifier ($A$, $B$, $C$, $n$, $m$, $\dot{\varepsilon}_0$, $T_0$, $T_f$). Des variantes de cette loi existent, faisant intervenir encore plus de paramètres [3].  
+Cette loi phÃ©nomÃ©nologique compte 8 paramÃ¨tres empiriques Ã  identifier ($A$, $B$, $C$, $n$, $m$, $\dot{\varepsilon}_0$, $T_0$, $T_f$). Des variantes de cette loi existent, faisant intervenir encore plus de paramÃ¨tres [3].  
 
-D'autres modèles peuvent être introduits :  
-- un modèle d'endommagement de la matière usinée ;
-- un modèle de fissuration ;
-- un modèle métallurgique ;
-- un modèle d'évolution de la microstructure ;
+D'autres modÃ¨les peuvent Ãªtre introduits :  
+- un modÃ¨le d'endommagement de la matiÃ¨re usinÃ©e ;
+- un modÃ¨le de fissuration ;
+- un modÃ¨le mÃ©tallurgique ;
+- un modÃ¨le d'Ã©volution de la microstructure ;
 - ...
 
-Ces modèles, parfois complexes, demandent une identification de leurs paramètres qui peut être fort délicate.
+Ces modÃ¨les, parfois complexes, demandent une identification de leurs paramÃ¨tres qui peut Ãªtre fort dÃ©licate.
 
-Au sein de la méthode des éléments finis, les principales méthodes de résolution utilisées sont :  
-- une méthode de résolution de l'équilibre mécanique globale de la structure (type Newton) ;
-- une méthode de résolution de l'équilibre thermique (type $\theta$-méthode) ;
-- des méthodes d'intégration des lois de comportement des matériaux (implicites ou explicites) ;
-- une méthode de remaillage automatique (type ALE) ;
-- une méthode de gestion du contact (maître-esclave, multiplicateurs de Lagrange,...).
+Au sein de la mÃ©thode des Ã©lÃ©ments finis, les principales mÃ©thodes de rÃ©solution utilisÃ©es sont :  
+- une mÃ©thode de rÃ©solution de l'Ã©quilibre mÃ©canique globale de la structure (type Newton) ;
+- une mÃ©thode de rÃ©solution de l'Ã©quilibre thermique (type $\theta$-mÃ©thode) ;
+- des mÃ©thodes d'intÃ©gration des lois de comportement des matÃ©riaux (implicites ou explicites) ;
+- une mÃ©thode de remaillage automatique (type ALE) ;
+- une mÃ©thode de gestion du contact (maÃ®tre-esclave, multiplicateurs de Lagrange,...).
 
-Ces méthodes peuvent s'avérer très chronophages voire rédhibitoires en terme de mémoire et de temps de calcul (plusieurs dizaines d'heures pour la formation d'un copeau de 1 mm de long).
+Ces mÃ©thodes peuvent s'avÃ©rer trÃ¨s chronophages voire rÃ©dhibitoires en terme de mÃ©moire et de temps de calcul (plusieurs dizaines d'heures pour la formation d'un copeau de 1 mm de long).
 
-#### II.3 Résultats atteignables
+#### II.3 RÃ©sultats atteignables
 
-La simulation par éléments finis permet d'accèder aux distributions de déplacement, d'effort de réaction, de vitesses de déformation, de contraintes (cf. figure 3), de températures. Elle donne aussi accès à des paramètres directement utilisables par l'usineur :  
-- la géométrie du copeau qui permet d'estimer le débit de matière usinée ;
-- l'effort de coupe qui permet d'estimer le couple à la broche et la puissance de coupe.
+La simulation par Ã©lÃ©ments finis permet d'accÃ¨der aux distributions de dÃ©placement, d'effort de rÃ©action, de vitesses de dÃ©formation, de contraintes (cf. figure 3), de tempÃ©ratures. Elle donne aussi accÃ¨s Ã  des paramÃ¨tres directement utilisables par l'usineur :  
+- la gÃ©omÃ©trie du copeau qui permet d'estimer le dÃ©bit de matiÃ¨re usinÃ©e ;
+- l'effort de coupe qui permet d'estimer le couple Ã  la broche et la puissance de coupe.
 
-De plus, elle permet d'étudier l'effet des divers paramètres de coupe (angle de coupe, vitesse de coupe, coefficient de frottement, avance, arrondi de l'arête de coupe) et permet de prendre en compte la géométrie exacte de l'outil (et d'un défaut initial potentiel).
+De plus, elle permet d'Ã©tudier l'effet des divers paramÃ¨tres de coupe (angle de coupe, vitesse de coupe, coefficient de frottement, avance, arrondi de l'arÃªte de coupe) et permet de prendre en compte la gÃ©omÃ©trie exacte de l'outil (et d'un dÃ©faut initial potentiel).
 
-![mises](https://github.com/pfelecan/agumms/blob/master/materials/mises.png)
+![Contraintes de von Mises](https://github.com/pfelecan/agumms/blob/master/materials/mises.png)
 
-||
-|:-:|
-|Figure 3 : Distribution de la contrainte équivalente de von Mises [3].|
-|| 
+Figure 3 : Distribution de la contrainte Ã©quivalente de von Mises [3]. 
 
 ### II.4 Limites actuelles et orientations futurs
-La modélisation de l'usinage reste un domaine très délicat à mettre en données car elle met en jeu des déformations par cisaillement très importantes, des températures de plusieurs centaines de degrés et des vitesses de déformation de l'ordre de plusieurs dizaines, voire centaines de milliers de s<sup>-1</sup>, ce qui rend très difficile la mesure du comportement mécanique nécessaire à la simulation de la coupe, car les dispositifs actuels qui permettent d'approcher de telles vitesses de déformation (barres de Hopkinson) posent des problèmes d'interprétation (hétérogénéité de déformation, rôle du frottement en compression, échauffement...). 
+La modÃ©lisation de l'usinage reste un domaine trÃ¨s dÃ©licat Ã  mettre en donnÃ©es car elle met en jeu des dÃ©formations par cisaillement trÃ¨s importantes, des tempÃ©ratures de plusieurs centaines de degrÃ©s et des vitesses de dÃ©formation de l'ordre de plusieurs dizaines, voire centaines de milliers de s<sup>-1</sup>, ce qui rend trÃ¨s difficile la mesure du comportement mÃ©canique nÃ©cessaire Ã  la simulation de la coupe, car les dispositifs actuels qui permettent d'approcher de telles vitesses de dÃ©formation (barres de Hopkinson) posent des problÃ¨mes d'interprÃ©tation (hÃ©tÃ©rogÃ©nÃ©itÃ© de dÃ©formation, rÃ´le du frottement en compression, Ã©chauffement...). 
 
-La simulation de la coupe orthogonale, seule configuration étudiée dans les travaux de recherche à l'heure actuelle, est généralement limitée à quelques millimètres d'usinage pendant quelques millisecondes. Elle n'a donc pas la prétention de prédire le comportement, l'usure, la durée de vie... de l’outil lors d'une opération d'usinage, mais contribue à la compréhension des phénomènes physiques impliqués.
+La simulation de la coupe orthogonale, seule configuration Ã©tudiÃ©e dans les travaux de recherche Ã  l'heure actuelle, est gÃ©nÃ©ralement limitÃ©e Ã  quelques millimÃ¨tres d'usinage pendant quelques millisecondes. Elle n'a donc pas la prÃ©tention de prÃ©dire le comportement, l'usure, la durÃ©e de vie... de lâ€™outil lors d'une opÃ©ration d'usinage, mais contribue Ã  la comprÃ©hension des phÃ©nomÃ¨nes physiques impliquÃ©s.
 
-Les recherches actuelles s'attachent à développer des modèles rhéologiques et de frottement plus représentatifs, notamment pour l'usinage à grande vitesse. Elles s'orientent vers l'intégration de lois d'évolution de microstructure [3], d'usure, de prise en compte d'interaction fluide-structure (assistance à jet d'eau).
+Les recherches actuelles s'attachent Ã  dÃ©velopper des modÃ¨les rhÃ©ologiques et de frottement plus reprÃ©sentatifs, notamment pour l'usinage Ã  grande vitesse. Elles s'orientent vers l'intÃ©gration de lois d'Ã©volution de microstructure [3], d'usure, de prise en compte d'interaction fluide-structure (assistance Ã  jet d'eau).
 
-## III Constitution d'une base de données matérielles pour l'usinage : spécifications et recommandations
+## III Constitution d'une base de donnÃ©es matÃ©rielles pour l'usinage : spÃ©cifications et recommandations
 
-Les matériaux sont généralement regroupés en 4 grandes classes : les métaux, les céramiques (regroupées avec les verres), les polymères (avec les élastomères) et les matériaux hybrides (composites, mousses, bois). Au sein de ces classes, on définit des familles (par exemple la famille des aciers pour la classe des métaux). Ces familles sont elles-mêmes hiérarchisées en sous-structures suivant le niveau d'exhaustivité qu'on recherche.
+Les matÃ©riaux sont gÃ©nÃ©ralement regroupÃ©s en 4 grandes classes : les mÃ©taux, les cÃ©ramiques (regroupÃ©es avec les verres), les polymÃ¨res (avec les Ã©lastomÃ¨res) et les matÃ©riaux hybrides (composites, mousses, bois). Au sein de ces classes, on dÃ©finit des familles (par exemple la famille des aciers pour la classe des mÃ©taux). Ces familles sont elles-mÃªmes hiÃ©rarchisÃ©es en sous-structures suivant le niveau d'exhaustivitÃ© qu'on recherche.
 
-Comme les métaux sont la classe la plus représentée des matériaux usinés (en particulier, les aciers), on pourra les diviser en 6 grandes familles conformément à la norme ISO [5] :  
+Comme les mÃ©taux sont la classe la plus reprÃ©sentÃ©e des matÃ©riaux usinÃ©s (en particulier, les aciers), on pourra les diviser en 6 grandes familles conformÃ©ment Ã  la norme ISO [5] :  
 - les aciers ;
 - les aciers inoxydables ;
 - les fontes ;
 - les alliages d'aluminium ;
-- les alliages réfractaires ;
-- les aciers trempés.
+- les alliages rÃ©fractaires ;
+- les aciers trempÃ©s.
 
-Les matériaux de coupe sont principalement assimilés à la classe des céramiques. On pourra différencier les familles suivantes :  
-- les aciers au carbone, au tungstène ;
-- les carbures (cémentés revêtus ou non, cermet) ;
-- les céramiques ;
+Les matÃ©riaux de coupe sont principalement assimilÃ©s Ã  la classe des cÃ©ramiques. On pourra diffÃ©rencier les familles suivantes :  
+- les aciers au carbone, au tungstÃ¨ne ;
+- les carbures (cÃ©mentÃ©s revÃªtus ou non, cermet) ;
+- les cÃ©ramiques ;
 - les diamants.
 
-Etant donné le nombre pléthorique de matériaux, en particulier de nuances au sein d'une même famille d'aciers, il n'est pas nécessaire, dans un premier temps, de multiplier les sous-familles. De plus, pour chaque famille de matériau, on pourra donner soit une valeur représentative, soit un intervalle de valeurs, des propriétés du tableau 1, à température ambiante. Comme les lois de comportement des matériaux usinés et d'outil ne sont a priori pas connus (c'est à l'utilisateur de les définir), notamment concernant les propriétés visco-plastiques du matériau usiné, il n'est pas utile d'en proposer plus. 
+Etant donnÃ© le nombre plÃ©thorique de matÃ©riaux, en particulier de nuances au sein d'une mÃªme famille d'aciers, il n'est pas nÃ©cessaire, dans un premier temps, de multiplier les sous-familles. De plus, pour chaque famille de matÃ©riau, on pourra donner soit une valeur reprÃ©sentative, soit un intervalle de valeurs, des propriÃ©tÃ©s du tableau 1, Ã  tempÃ©rature ambiante. Comme les lois de comportement des matÃ©riaux usinÃ©s et d'outil ne sont a priori pas connus (c'est Ã  l'utilisateur de les dÃ©finir), notamment concernant les propriÃ©tÃ©s visco-plastiques du matÃ©riau usinÃ©, il n'est pas utile d'en proposer plus. 
 
-On trouvera des exemples de base de données matérielles sur Wikipédia [6], comme Matweb [7] ou Matmatch [8]. La page Wikipédia "Liste de propriétés d'un matériau" renvoie vers des pages contenant généralement des tableaux de valeur par type de matériaux. Ces valeurs pourront servir pour une mise en données par défaut d'une simulation simplifiée, voire pour un modèle mécaniste simplifié, comme le modèle de Merchant. Dans ce cas, la donnée de $\mu = \tan \Phi$ et de $R_e=\sqrt{3}k$ est suffisante.
+On trouvera des exemples de base de donnÃ©es matÃ©rielles sur WikipÃ©dia [6], comme Matweb [7] ou Matmatch [8]. La page WikipÃ©dia "Liste de propriÃ©tÃ©s d'un matÃ©riau" renvoie vers des pages contenant gÃ©nÃ©ralement des tableaux de valeur par type de matÃ©riaux. Ces valeurs pourront servir pour une mise en donnÃ©es par dÃ©faut d'une simulation simplifiÃ©e, voire pour un modÃ¨le mÃ©caniste simplifiÃ©, comme le modÃ¨le de Merchant. Dans ce cas, la donnÃ©e de $\mu = \tan \Phi$ et de $R_e=\sqrt{3}k$ est suffisante.
 
-## Références
+## RÃ©fÃ©rences
 ### Bibliographie
-[1] Fikret Kalay, _Simulation numérique de l'usinage - Application à l'aluminium AU4G (A2024-T351)_, Techniques de l'ingénieur, BM 7002 (2010).
-[2] Eric Felder, _Modélisation de la coupe des métaux_, Techniques de l'ingénieur, BM 7041 (2006).
-[3] Shreyes Melkote, Wit Grzesik, José Outeiro, Joel Rech, Volker Schulze, et al., _Advances in material and friction data for modelling of metal machining_, CIRP Annals - Manufacturing Technology, Elsevier, 2017, 66 (2), pp.731-754.
-[4] Cédric Courbon. Vers une modélisation physique de la coupe des aciers spéciaux : intégration du comportement métallurgique et des phénomèes tribologiques et thermiques aux interfaces. Thèse de doctorat. Ecole Centrale de Lyon (2011).
+[1] Fikret Kalay, _Simulation numÃ©rique de l'usinage - Application Ã  l'aluminium AU4G (A2024-T351)_, Techniques de l'ingÃ©nieur, BM 7002 (2010).  
+[2] Eric Felder, _ModÃ©lisation de la coupe des mÃ©taux_, Techniques de l'ingÃ©nieur, BM 7041 (2006).  
+[3] Shreyes Melkote, Wit Grzesik, JosÃ© Outeiro, Joel Rech, Volker Schulze, et al., _Advances in material and friction data for modelling of metal machining_, CIRP Annals - Manufacturing Technology, Elsevier, 2017, 66 (2), pp.731-754.  
+[4] CÃ©dric Courbon. Vers une modÃ©lisation physique de la coupe des aciers spÃ©ciaux : intÃ©gration du comportement mÃ©tallurgique et des phÃ©nomÃ¨es tribologiques et thermiques aux interfaces. ThÃ¨se de doctorat. Ecole Centrale de Lyon (2011).
 
 ### Sitographie
-[5] www.sandvik.coromant.com
-[6] en.wikipedia.org/wiki/Materials_database
-[7] www.matweb.com
-[8] matmatch.com
+[5] www.sandvik.coromant.com  
+[6] en.wikipedia.org/wiki/Materials_database  
+[7] www.matweb.com  
+[8] matmatch.com  
 
