@@ -6,15 +6,15 @@ Une opération d'usinage par machine-outil à commande numérique sollicite des 
 - estimer le volume de matière enlevée ;
 - certifier la trajectoire d'outil générée par un logiciel de FAO, en conformité avec la machine.
 
-Ces simulations sont généralement effectuées par un logiciel de FAO à partir de modèles géométriques [1]. Cependant, elles souffrent d'un manque de précision concernant la géométrie obtenue et ne permettent pas d'anticiper certains problèmes (aptitude à l'usinage, modes d'usure et d'endommagement des outils, qualité de surface de la pièce usinée).
+Ces simulations sont généralement effectuées par un logiciel de FAO à partir de modèles géométriques[1]. Cependant, elles souffrent d'un manque de précision concernant la géométrie obtenue et ne permettent pas d'anticiper certains problèmes (aptitude à l'usinage, modes d'usure et d'endommagement des outils, qualité de surface de la pièce usinée).
 
 Afin d'optimiser les conditions d'usinage, différentes méthodes peuvent être mises en oeuvre :  
 - les méthodes expérimentales, longues et coûteuses, où la zone de fonctionnement idéale est recherchée au travers d'un plan d'expérience ;
 - les méthodes numériques, utilisant un modèle de coupe à une échelle d'observation particulière (cf. figure 1).
 
-![Echelles de modélisation](https://github.com/pfelecan/agumms/blob/master/materials/echelles.png)
+![Echelles de modélisation](echelles.png)
 
-**Figure 1 : Les différentes échelles de modélisation de la coupe des métaux [4]. A l'échelle microscopique, la cartographie EBSD dévoile la microstructure du copeau dans la zone de contact avec l'outil.**
+**Figure 1 : Les différentes échelles de modélisation de la coupe des métaux[4]. A l'échelle microscopique, la cartographie EBSD dévoile la microstructure du copeau dans la zone de contact avec l'outil.**
 
 Ces modèles sont basés sur différentes approches :  
 - les approches empiriques, basées sur un grand nombre de données expérimentales, comme le couple outil-matière (échelle macroscopique) ;
@@ -41,9 +41,9 @@ Le paramètre $k$ est proportionnel à la limite élastique et à la dureté. Le
 
 Ce modèle a tendance à sous-estimer les efforts de coupe, l'épaisseur du copeau et la longueur de contact. De plus, les modèles purement mécaniques ne prédisent pas la décroissance de $K_c$ avec l'avance $s$.
 
-![géométrie de la coupe orthogonale](https://github.com/pfelecan/agumms/blob/master/materials/geometrie.png)
+![géométrie de la coupe orthogonale](geometrie.png)
 
-**Figure 2 : Géométrie de la coupe orthogonale [2]. **
+**Figure 2 : Géométrie de la coupe orthogonale[2].**
 
 Les approches thermomécaniques permettent d'avoir accès aux déformations locales et aux contraintes résiduelles de la pièce et de l'outil. Elles permettent de prédire précisément la géométrie finale de la pièce et d'avoir accès à certaines grandeurs qualifiant l'état mécanique des composants (dureté, usure...). Elles sont généralement mises en oeuvre par simulation numérique à l'aide de la méthode des éléments finis. 
 
@@ -94,7 +94,7 @@ $$
 \sigma_y = \left[A+B\left(\varepsilon_p\right)^n\right]\left[1+C  \ln\left(\frac {\dot{\varepsilon}_p}{\dot{\varepsilon}_0}\right)\right]\left[1-\left(\frac{T-T_0}{T_f - T_0} \right)^m \right]
 $$
 
-Cette loi phénoménologique compte 8 paramètres empiriques à identifier ($A$, $B$, $C$, $n$, $m$, $\dot{\varepsilon}_0$, $T_0$, $T_f$). Des variantes de cette loi existent, faisant intervenir encore plus de paramètres [3].  
+Cette loi phénoménologique compte 8 paramètres empiriques à identifier ($A$, $B$, $C$, $n$, $m$, $\dot{\varepsilon}_0$, $T_0$, $T_f$). Des variantes de cette loi existent, faisant intervenir encore plus de paramètres[3].  
 
 D'autres modèles peuvent être introduits :  
 - un modèle d'endommagement de la matière usinée ;
@@ -122,9 +122,9 @@ La simulation par éléments finis permet d'accèder aux distributions de dépla
 
 De plus, elle permet d'étudier l'effet des divers paramètres de coupe (angle de coupe, vitesse de coupe, coefficient de frottement, avance, arrondi de l'arête de coupe) et permet de prendre en compte la géométrie exacte de l'outil (et d'un défaut initial potentiel).
 
-![Contraintes de von Mises](https://github.com/pfelecan/agumms/blob/master/materials/mises.png)
+![Contraintes de von Mises](mises.png)
 
-Figure 3 : Distribution de la contrainte équivalente de von Mises [3]. 
+**Figure 3 : Distribution de la contrainte équivalente de von Mises[3].**
 
 ### II.4 Limites actuelles et orientations futurs
 La modélisation de l'usinage reste un domaine très délicat à mettre en données car elle met en jeu des déformations par cisaillement très importantes, des températures de plusieurs centaines de degrés et des vitesses de déformation de l'ordre de plusieurs dizaines, voire centaines de milliers de s<sup>-1</sup>, ce qui rend très difficile la mesure du comportement mécanique nécessaire à la simulation de la coupe, car les dispositifs actuels qui permettent d'approcher de telles vitesses de déformation (barres de Hopkinson) posent des problèmes d'interprétation (hétérogénéité de déformation, rôle du frottement en compression, échauffement...). 
@@ -137,7 +137,7 @@ Les recherches actuelles s'attachent à développer des modèles rhéologiques e
 
 Les matériaux sont généralement regroupés en 4 grandes classes : les métaux, les céramiques (regroupées avec les verres), les polymères (avec les élastomères) et les matériaux hybrides (composites, mousses, bois). Au sein de ces classes, on définit des familles (par exemple la famille des aciers pour la classe des métaux). Ces familles sont elles-mêmes hiérarchisées en sous-structures suivant le niveau d'exhaustivité qu'on recherche.
 
-Comme les métaux sont la classe la plus représentée des matériaux usinés (en particulier, les aciers), on pourra les diviser en 6 grandes familles conformément à la norme ISO [5] :  
+Comme les métaux sont la classe la plus représentée des matériaux usinés (en particulier, les aciers), on pourra les diviser en 6 grandes familles conformément à la norme ISO[5] :  
 - les aciers ;
 - les aciers inoxydables ;
 - les fontes ;
@@ -153,7 +153,7 @@ Les matériaux de coupe sont principalement assimilés à la classe des céramiq
 
 Etant donné le nombre pléthorique de matériaux, en particulier de nuances au sein d'une même famille d'aciers, il n'est pas nécessaire, dans un premier temps, de multiplier les sous-familles. De plus, pour chaque famille de matériau, on pourra donner soit une valeur représentative, soit un intervalle de valeurs, des propriétés du tableau 1, à température ambiante. Comme les lois de comportement des matériaux usinés et d'outil ne sont a priori pas connus (c'est à l'utilisateur de les définir), notamment concernant les propriétés visco-plastiques du matériau usiné, il n'est pas utile d'en proposer plus. 
 
-On trouvera des exemples de base de données matérielles sur Wikipédia [6], comme Matweb [7] ou Matmatch [8]. La page Wikipédia "Liste de propriétés d'un matériau" renvoie vers des pages contenant généralement des tableaux de valeur par type de matériaux. Ces valeurs pourront servir pour une mise en données par défaut d'une simulation simplifiée, voire pour un modèle mécaniste simplifié, comme le modèle de Merchant. Dans ce cas, la donnée de $\mu = \tan \Phi$ et de $R_e=\sqrt{3}k$ est suffisante.
+On trouvera des exemples de base de données matérielles sur Wikipédia[6], comme Matweb[7] ou Matmatch[8]. La page Wikipédia "Liste de propriétés d'un matériau" renvoie vers des pages contenant généralement des tableaux de valeur par type de matériaux. Ces valeurs pourront servir pour une mise en données par défaut d'une simulation simplifiée, voire pour un modèle mécaniste simplifié, comme le modèle de Merchant. Dans ce cas, la donnée de $\mu = \tan \Phi$ et de $R_e=\sqrt{3}k$ est suffisante.
 
 ## Références
 ### Bibliographie
@@ -164,7 +164,7 @@ On trouvera des exemples de base de données matérielles sur Wikipédia [6], co
 
 ### Sitographie
 [5] www.sandvik.coromant.com  
-[6] en.wikipedia.org/wiki/Materials_database  
+[6] https://en.wikipedia.org/wiki/Materials_database  
 [7] www.matweb.com  
-[8] matmatch.com  
+[8] https://matmatch.com  
 
