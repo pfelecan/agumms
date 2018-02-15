@@ -21,7 +21,7 @@ Ces modèles sont basés sur différentes approches :
 - les approches phénoménologiques ou mécanistes, basées sur des modélisations simples retranscrivant le comportement mécanique (échelle mésoscopique) ;
 - les approches physiques (échelle microscopique) ou thermomécaniques (échelle mésoscopique), fondées sur des lois de comportement plus ou moins évoluées.
 
-Ces modèles permettent de prédire la géométrie des copeaux, les forces de coupe et les échauffements à partir des conditions de coupe et des matériaux usinés et d'outil. En particulier, l'énergie spécifique de coupe (aussi appelée pression spécifique de coupe) $K_c$ est un paramètre important car il permet d'avoir accès à l'effort de coupe $F_c$, à la puissance de coupe $P_c$ et au couple à la broche.
+Ces modèles permettent de prédire la géométrie des copeaux, les forces de coupe, voire les échauffements, à partir des conditions de coupe et des matériaux usinés et d'outil. En particulier, l'énergie spécifique de coupe (aussi appelée pression spécifique de coupe) $K_c$ est un paramètre important car il permet d'avoir accès à l'effort de coupe $F_c$, à la puissance de coupe $P_c$ et au couple à la broche.
 
 Les approches empiriques relient $K_c$ (W.s.m<sup>-3</sup>) à l'épaisseur du copeau $\ell$ (mm) par une fonction analytique :
 
@@ -31,7 +31,7 @@ $$
 
 Les paramètres $K_{c1}$ et $m_c$ sont déterminés expérimentalement et tabulés.
 
-Les approches mécanistes permettent d'avoir accès aux efforts locaux à partir des conditions de coupe locales. Dans le cas de la coupe orthogonale (cf. figure 2), le modèle de Merchant considère que la formation du copeau s'effectue par cisaillement. Il permet de calculer l'effort de coupe $F_c$ à partir des paramètres géométriques de la coupe (avance $s$, profondeur de passe $w$, angle de coupe $\gamma$), et de paramètres matériels (l'angle d'adhérence $\Phi$ dans le cas d'un frottement de Coulomb et la contrainte maximale de cisaillement admissible $k$ pour un matériau rigide parfaitement plastique) :
+Les approches mécanistes permettent d'avoir accès aux efforts locaux à partir des conditions de coupe locales. Dans le cas de la coupe orthogonale (cf. figure 2), le modèle de Merchant considère que la formation du copeau s'effectue par cisaillement. Il permet de calculer l'effort de coupe $F_c$ à partir des paramètres géométriques de la coupe (avance $s$, profondeur de passe $w$, angle de coupe $\gamma$), et de paramètres matériels (l'angle de frottement $\Phi$ dans le cas d'un frottement dynamique de Coulomb et la contrainte maximale de cisaillement admissible $k$ pour un matériau rigide parfaitement plastique) :
 
 $$
 F_c = 2ksw\tan\left( \frac{\pi}{4}+\frac{\Phi - \gamma}{2}\right)
@@ -63,32 +63,44 @@ Sur le plan physique s'ajoutent, pour la confrontation des résultats à l'expé
 ### II.2 Modélisation de la coupe orthogonale
 La simulation de la coupe orthogonale reste à ce jour le seul cas d'usinage traité numériquement car les hypothèses de modélisation (équilibre mécanique quasi-statique et régime thermique permanent de la phase stabilisée d'usinage, déformations planes en 2D) permettent de trouver un compromis acceptable entre le temps de calcul et la qualité des résultats.
 
-Le principe de la simulation d’une coupe orthogonale pure est donné sur la figure 2 : la pièce est un bloc rectangulaire qui est bloqué par une butée ; l’outil est initialement à l’extérieur de la pièce et son arête est située à une certaine distance de la surface supérieure de la pièce (avance $s$) . Animé d’une vitesse horizontale (vitesse de coupe), l’outil rentre progressivement dans la pièce et le code de calcul fournit directement le processus de formation du copeau en début d’usinage en résolvant simultanément les équations mécaniques et l’équation de la chaleur.
+Le principe de la simulation d’une coupe orthogonale pure est donné sur la figure 2 : la pièce est un bloc rectangulaire qui est bloqué par une butée ; l’outil est initialement à l’extérieur de la pièce et son arête est située à une certaine distance de la surface supérieure de la pièce (avance $s$) . Animé d’une vitesse horizontale (vitesse de coupe), l’outil rentre progressivement dans la pièce et le code de calcul fournit directement le processus de formation du copeau en début d’usinage en résolvant simultanément les équations de la mécanique et de la chaleur.
 
 
 Les principaux modèles physiques utilisés sont :  
 - un modèle de transfert de chaleur couplé à la mécanique ;
-- un modèle rhéologique thermo-élasto-visco-plastique pour le matériau usiné et généralement thermo-élastique pour l'outil ;
+- un modèle rhéologique pour le matériau usiné et pour l'outil ;
 - un modèle de frottement entre le matériau et l'outil (type Coulomb ou Tresca).
 
-Le tableau 1 indique les principales propriétés indispensables pour une formulation thermo-élasto-plastique (sans écrouissage).
+La formulation du modèle rhéologique de l'outil doit être au moins thermo-élastique et celle du matériau usiné au moins thermo-élasto-plastique (sans écrouissage). Le tableau 1 indique les principales propriétés indispensables pour une telle formulation.
 
  Propriété           | Symbole | Unité  
 :-------------------:|:-------:|:------:
  Masse volumique     | $\rho$  | kg.m<sup>-3</sup> 
  Module de Young     |   $E$    |   Pa  
  Coefficient de Poisson |$\nu$ |   -    
- Limite élastique    | $R_e$ | Pa
+ Limite d'élasticité    | $R_e$ | Pa
  Coefficient de frottement|$\mu$| -
- Dilatation thermique|$\alpha$ | K<sup>-1</sup> 
- Chaleur spécifique  | $C_p$   | J.kg<sup>-1</sup>.K<sup>-1</sup>
+ Coefficient de dilatation thermique|$\alpha$ | K<sup>-1</sup> 
+ Capacité thermique massique | $C_p$   | J.kg<sup>-1</sup>.K<sup>-1</sup>
  Conductivité thermique|$\lambda$| W.K<sup>-1</sup>.m<sup>-1</sup>
  
 **Tableau 1 : Propriétés thermiques et mécaniques.**
 
-Etant donné les forts gradients thermiques dans la zone de coupe (températures pouvant atteindre plusieurs centaines de degrès Celsius), il est indispensable d'avoir accès aux variations des coefficients de ces modèles avec la température. 
+Le module de Young $E$ et le coefficient de Poisson $\nu$ caractérisent l'élasticité linéaire des matériaux isotropes et permettent de relier les contraintes mécaniques aux déformations élastiques (réversibles) au moyen de la loi de Hooke.
 
-Il existe quantités de lois de comportement (visco-)plastiques. La loi de Johnson-Cook est souvent utilisée pour modéliser la visco-plasticité de certains métaux soumis à de grandes vitesses de déformation (aciers bas et moyen carbone, aluminium, titane, laiton, cuivre, tungstène). Il relie la déformation plastique $\varepsilon_p$ à la contrainte d'écoulement $\sigma_y$ ($T$ désigne la température) :
+La limite d'élasticité $R_e$ (*yield strength* $\sigma_y$ en anglais), est la contrainte mécanique à partir de laquelle le matériau subit des déformations plastiques (irréversibles).
+
+Le coefficient de dilatation thermique $\alpha$ caractérise la variation de longueur d'un matériau isotrope en fonction d'une variation de température.
+
+Le coefficient de frottement dynamique $\mu$ caractérise la force tangentielle qui tend à s'opposer au glissement entre le matériau usiné et l'outil.
+
+La capacité thermique massique $C_p$ reflète la capacité d'un matériau à accumuler de l'énergie sous forme thermique, pour une masse donnée, quand sa température augmente. Une grande capacité thermique signifiera qu'une grande quantité d'énergie peut être stockée moyennant une augmentation relativement faible de la température.
+
+La conductivité thermique $\lambda$ caractérise l'aptitude d'un matériau isotrope à transférer la chaleur par conduction. Elle relie la quantité de chaleur au gradient thermique qui en résulte au moyen de la loi de Fourier.
+
+Etant donné les forts gradients thermiques dans la zone de coupe (températures pouvant atteindre plusieurs centaines de degrès Celsius), il est nécessaire d'avoir accès aux variations des coefficients de ces modèles avec la température.
+
+Il existe quantités de lois rhéologiques pour le matériau usiné. La loi de Johnson-Cook est souvent utilisée pour modéliser la visco-plasticité de certains métaux soumis à de grandes vitesses de déformation (aciers bas et moyen carbone, aluminium, titane, laiton, cuivre, tungstène). Elle relie la déformation plastique $\varepsilon_p$ à la contrainte d'écoulement $\sigma_y$ ($T$ désigne la température) :
 
 $$
 \sigma_y = \left[A+B\left(\varepsilon_p\right)^n\right]\left[1+C  \ln\left(\frac {\dot{\varepsilon}_p}{\dot{\varepsilon}_0}\right)\right]\left[1-\left(\frac{T-T_0}{T_f - T_0} \right)^m \right]
@@ -131,7 +143,7 @@ La modélisation de l'usinage reste un domaine très délicat à mettre en donn�
 
 La simulation de la coupe orthogonale, seule configuration étudiée dans les travaux de recherche à l'heure actuelle, est généralement limitée à quelques millimètres d'usinage pendant quelques millisecondes. Elle n'a donc pas la prétention de prédire le comportement, l'usure, la durée de vie... de l’outil lors d'une opération d'usinage, mais contribue à la compréhension des phénomènes physiques impliqués.
 
-Les recherches actuelles s'attachent à développer des modèles rhéologiques et de frottement plus représentatifs, notamment pour l'usinage à grande vitesse. Elles s'orientent vers l'intégration de lois d'évolution de microstructure [3], d'usure, de prise en compte d'interaction fluide-structure (assistance à jet d'eau).
+Les recherches actuelles s'attachent à développer des modèles rhéologiques et de frottement plus représentatifs, notamment pour l'usinage à grande vitesse. Elles s'orientent vers l'intégration de lois d'évolution de microstructure[3], d'usure, de prise en compte d'interaction fluide-structure (assistance à jet d'eau).
 
 ## III Constitution d'une base de données matérielles pour l'usinage : spécifications et recommandations
 
@@ -167,4 +179,3 @@ On trouvera des exemples de base de données matérielles sur Wikipédia[6], com
 [6] https://en.wikipedia.org/wiki/Materials_database  
 [7] www.matweb.com  
 [8] https://matmatch.com  
-
