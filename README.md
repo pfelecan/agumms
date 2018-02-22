@@ -51,12 +51,13 @@ Son objectif est la création d'un atelier ouvert permettant de:
 
 La coordination scientifique est assurée par Peter Felecan, architecte
 système, en collaboration avec les équipes pédagogiques des écoles
-participantes.
+participantes. Participent aussi des éminents membres de [C-S Systèmes
+d'Information][c-s] en qualité de [consultants scientifiques][consultants].
 
 ## Écoles
 Les écoles participant au projet sont:
 
-* [ESIEE Paris]() : École supérieure d'ingénieurs en électrotechnique
+* [ESIEE Paris][esiee] : École supérieure d'ingénieurs en électrotechnique
   et électronique.
   
   L'équipe est constituée de:
@@ -71,3 +72,9 @@ Les écoles participant au projet sont:
 [c-s]: http://www.c-s.fr/ "C-S Systèmes d'information"
 [écoles]: #Écoles
 [esiee]: http://www.esiee.fr/ "ESIEE Paris"
+
+## Consultants
+
+* Jean-Baptiste Minne, docteur en physique; matériaux.
+
+[consultants]: #Consultants
