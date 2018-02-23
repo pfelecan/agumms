@@ -77,4 +77,4 @@ Les écoles participant au projet sont:
 
 * Jean-Baptiste Minne, docteur en physique; matériaux.
 
-[consultants]: #Consultants
+[consultants]: #consultants
