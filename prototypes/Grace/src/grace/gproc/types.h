@@ -10,6 +10,7 @@
 #include <unordered_set>
 #include <variant>
 #include <vector>
+#include <cmath>
 
 #include <wx/string.h>
 

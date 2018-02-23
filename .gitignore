@@ -1,3 +1,8 @@
 /README.html
 /machining/README.html
 /materials/README.html
+/prototypes/Grace/src/grace/editor.o
+/prototypes/Grace/src/grace/gproc/lexer.o
+/prototypes/Grace/src/grace/gproc/parser.o
+/prototypes/Grace/src/grace/grace
+/prototypes/Grace/src/grace/main.o

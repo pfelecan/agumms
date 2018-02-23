@@ -92,7 +92,7 @@ void Editor::DoSetFoldLevels(unsigned fromPos, int startLevel, wxString& text) {
 }
 
 void Editor::DoSetStyling(unsigned fromPos, unsigned toPos, wxString &text) {
-    StartStyling(fromPos);
+    StartStyling(fromPos, 0);
     SetStyling(toPos - fromPos, 0);
 
 #if USE_LEXER
@@ -165,13 +165,13 @@ void Editor::DoSetStyling(unsigned fromPos, unsigned toPos, wxString &text) {
             {
                 length += t.length;
 
-                StartStyling(fromPos + start);
+                StartStyling(fromPos + start, 0);
                 SetStyling(length, numop);
             }
         }
         else if (t.type == Token::Comment)
         {
-            StartStyling(fromPos + start);
+            StartStyling(fromPos + start, 0);
             SetStyling(length, LEX_COMMENT);
         }
     }
